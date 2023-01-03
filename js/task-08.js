@@ -13,4 +13,13 @@ form.addEventListener("submit", (e) => {
         : alert("Пожалуйста, заполните поле Password!");
     }
   });
+
+  return (
+    console.log({
+      login: inputs[0].value,
+      password: inputs[1].value,
+    }),
+    (inputs[0].value = ""),
+    (inputs[1].value = "")
+  );
 });
