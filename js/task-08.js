@@ -1,25 +1,26 @@
-const { form, inputs } = {
+const { form, inputs, emailInput, passInput } = {
   form: document.querySelector(".login-form"),
+  emailInput: document.querySelector("input[name='email']"),
+  passInput: document.querySelector("input[name='password']"),
   inputs: document.querySelectorAll("input"),
 };
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  inputs.forEach((el, idx) => {
-    if (el.value === "") {
-      idx === 0
-        ? alert("Пожалуйста, заполните поле Email!")
-        : alert("Пожалуйста, заполните поле Password!");
-    }
-  });
-
-  return (
+  if (!Boolean(emailInput.value) && !Boolean(passInput.value)) {
+    alert("Please, enter your Email and Password!");
+  } else if (!Boolean(emailInput.value)) {
+    return alert("Please, enter your Email!");
+  } else if (!Boolean(passInput.value)) {
+    return alert("Please, enter your Password!");
+  } else {
     console.log({
-      login: inputs[0].value,
-      password: inputs[1].value,
-    }),
-    (inputs[0].value = ""),
-    (inputs[1].value = "")
-  );
+      email: emailInput.value,
+      password: passInput.value,
+    });
+
+    emailInput.value = "";
+    passInput.value = "";
+  }
 });
